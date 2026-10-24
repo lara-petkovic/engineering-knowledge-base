@@ -5,6 +5,7 @@ Time: O(n)
 Space: O(1)
 """
 
+
 class Solution:
     def isPalindrome(self, s: str) -> bool:
         left, right = 0, len(s) - 1
@@ -18,7 +19,6 @@ class Solution:
             left += 1
             right -= 1
         return True
-
 
 
 if __name__ == "__main__":
@@ -53,8 +53,8 @@ if __name__ == "__main__":
     for s, expected in cases:
         try:
             result = Solution().isPalindrome(s)
-            assert isinstance(result, bool), (f"Expected bool, got {type(result).__name__}")
-            assert result == expected, (f"Expected {expected}, got {result}")
+            assert isinstance(result, bool), f"Expected bool, got {type(result).__name__}"
+            assert result == expected, f"Expected {expected}, got {result}"
 
         except Exception as error:
             failed += 1
@@ -63,3 +63,4 @@ if __name__ == "__main__":
             print(f"PASS: s={s!r} => {result}")
 
     print(f"\nPassed: {len(cases) - failed}, failed: {failed}")
+    raise SystemExit(1 if failed else 0)

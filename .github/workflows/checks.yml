@@ -1,0 +1,58 @@
+name: Python checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exercises:
+    name: Exercise checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.15'
+          allow-prereleases: true
+      - name: Run all exercises
+        shell: python
+        run: |
+          from pathlib import Path
+          import subprocess
+          import sys
+
+          exercises = sorted(Path("algorithms").rglob("*.py"))
+          if not exercises:
+              sys.exit("No exercises found")
+          failed = []
+          for exercise in exercises:
+              print(f"::group::{exercise}", flush=True)
+              result = subprocess.run([sys.executable, str(exercise)], check=False)
+              print("::endgroup::", flush=True)
+              if result.returncode:
+                  failed.append(str(exercise))
+          if failed:
+              sys.exit("Failed exercises: " + ", ".join(failed))
+
+  ruff:
+    name: Ruff checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.15'
+          allow-prereleases: true
+      - name: Install Ruff
+        run: python -m pip install "ruff>=0.11,<1"
+      - name: Check lint
+        run: python -m ruff check .
+      - name: Check formatting
+        if: ${{ !cancelled() }}
+        run: python -m ruff format --check .

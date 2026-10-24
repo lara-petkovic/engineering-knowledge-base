@@ -12,3 +12,10 @@ From the repository root, using the local Python environment:
 .\.venv\Scripts\python.exe algorithms/arrays_hashing/contains_duplicate.py
 ```
 
+## GitHub checks
+
+GitHub Actions runs all exercises and checks lint and formatting with Ruff on
+every push and pull request. View results in the **Actions** tab. To run checks
+manually, select **Python checks → Run workflow** (available once the workflow
+is on the default branch).
+

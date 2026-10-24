@@ -5,6 +5,7 @@ Time: O(n)
 Space: O(n)
 """
 
+
 class Solution:
     def twoSum(self, nums: list[int], target: int) -> list[int]:
         hm = {}
@@ -13,6 +14,7 @@ class Solution:
                 return [hm[target - nums[i]], i]
             hm[nums[i]] = i
         return []
+
 
 if __name__ == "__main__":
     cases = [
@@ -36,3 +38,4 @@ if __name__ == "__main__":
         else:
             print(f"PASS: nums={nums}, target={target} => {result}")
     print(f"Passed: {len(cases) - failed}, failed: {failed}")
+    raise SystemExit(1 if failed else 0)
