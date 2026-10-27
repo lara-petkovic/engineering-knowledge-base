@@ -3,6 +3,10 @@
 A personal collection of Python exercises and practical engineering notes.
 
 - `algorithms/` — exercises grouped by topic, with example checks in each file.
+- Learning notes:
+  - [Algorithm logic and problem-solving](docs/problem-solving/)
+  - [Python functions and methods](docs/python-functions/)
+  - [Python data structures](docs/data-structures/)
 
 ## Run an exercise
 
