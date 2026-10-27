@@ -9,8 +9,8 @@
 ```python
 nums = [3, 1, 2]
 ordered = sorted(nums)  # [1, 2, 3]; nums stays [3, 1, 2]
-nums.sort()            # nums becomes [1, 2, 3]
-sorted("tea")          # ['a', 'e', 't']
+nums.sort()  # nums becomes [1, 2, 3]
+sorted("tea")  # ['a', 'e', 't']
 ```
 
 Both accept `reverse=True` for descending order and `key=` for a sorting rule,

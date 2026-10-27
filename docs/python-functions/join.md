@@ -5,7 +5,7 @@ separator between elements. Call it on the separator: `separator.join(items)`.
 
 ```python
 chars = ["a", "b", "c"]
-"".join(chars)   # "abc"
+"".join(chars)  # "abc"
 "-".join(chars)  # "a-b-c"
 " ".join(chars)  # "a b c"
 ```
@@ -14,7 +14,7 @@ chars = ["a", "b", "c"]
 
 ```python
 s = "tea"
-sorted(s)           # ['a', 'e', 't']
+sorted(s)  # ['a', 'e', 't']
 "".join(sorted(s))  # "aet"
 ```
 

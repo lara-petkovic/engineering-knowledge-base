@@ -3,9 +3,9 @@
 Returns the Unicode code point of a single character.
 
 ```python
-ord('A')   # 65
-ord('a')   # 97
-ord('0')   # 48
+ord("A")  # 65
+ord("a")  # 97
+ord("0")  # 48
 ```
 
 ## What it does
@@ -13,10 +13,10 @@ ord('0')   # 48
 `ord()` takes one character and returns its numeric Unicode value. It is the opposite of `chr()`, which converts a number back into a character.
 
 ```python
-letter = 'A'
+letter = "A"
 code = ord(letter)
-print(code)   # 65
-print(chr(code))   # A
+print(code)  # 65
+print(chr(code))  # A
 ```
 
 ## When to use it
@@ -35,7 +35,7 @@ Use `ord()` when you need to work with the numeric value of a character, for exa
 - `ord()` works with Unicode, not just ASCII
 
 ```python
-ord('č')   # 269
+ord("č")  # 269
 ```
 
 ## Example

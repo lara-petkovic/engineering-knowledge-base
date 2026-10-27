@@ -20,24 +20,7 @@ jobs:
           python-version: '3.15'
           allow-prereleases: true
       - name: Run all exercises
-        shell: python
-        run: |
-          from pathlib import Path
-          import subprocess
-          import sys
-
-          exercises = sorted(Path("algorithms").rglob("*.py"))
-          if not exercises:
-              sys.exit("No exercises found")
-          failed = []
-          for exercise in exercises:
-              print(f"::group::{exercise}", flush=True)
-              result = subprocess.run([sys.executable, str(exercise)], check=False)
-              print("::endgroup::", flush=True)
-              if result.returncode:
-                  failed.append(str(exercise))
-          if failed:
-              sys.exit("Failed exercises: " + ", ".join(failed))
+        run: python scripts/check_exercises.py
 
   ruff:
     name: Ruff checks

@@ -23,3 +23,17 @@ every push and pull request. View results in the **Actions** tab. To run checks
 manually, select **Python checks → Run workflow** (available once the workflow
 is on the default branch).
 
+## Checks before committing
+
+Install the development dependencies and enable the local Git hook once:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install "pre-commit>=4,<5" "ruff>=0.11,<1"
+.\.venv\Scripts\python.exe -m pre_commit install
+```
+
+Before each commit, the hook runs all exercise checks, Ruff lint, and Ruff
+format checks. A commit is rejected if any check fails. GitHub Actions runs
+the same checks as an additional safeguard. The hook can be bypassed with
+`--no-verify`, so keep the GitHub checks required for merging if you want
+server-side enforcement too.

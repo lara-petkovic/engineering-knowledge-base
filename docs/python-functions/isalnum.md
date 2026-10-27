@@ -5,13 +5,13 @@ characters. Spaces and punctuation return `False`. Recognizes Unicode characters
 not just ASCII letters and digits.
 
 ```python
-"a".isalnum()    # True
-"7".isalnum()    # True
+"a".isalnum()  # True
+"7".isalnum()  # True
 "abc123".isalnum()  # True
-"č".isalnum()    # True
-" ".isalnum()    # False
-"!".isalnum()    # False
-"".isalnum()     # False
+"č".isalnum()  # True
+" ".isalnum()  # False
+"!".isalnum()  # False
+"".isalnum()  # False
 ```
 
 ## In Valid Palindrome
