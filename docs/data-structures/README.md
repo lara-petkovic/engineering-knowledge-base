@@ -4,3 +4,4 @@ These are my personal study notes on data structures, developed as I work throug
 
 - [Hash set (`set`)](hashset.md)
 - [Hash map (`dict`)](hashmap.md)
+- [Tree](tree.md)
