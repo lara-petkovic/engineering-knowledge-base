@@ -1,6 +1,8 @@
 """Binary Search (Easy).
 
 Problem: https://leetcode.com/problems/binary-search/
+Given a sorted integer list and a target, return its index or -1 if it is absent.
+
 Time: O(log n)
 Space: O(1)
 """

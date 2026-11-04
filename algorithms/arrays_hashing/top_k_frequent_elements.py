@@ -1,6 +1,9 @@
 """Top K Frequent Elements (Medium).
 
 Problem: https://leetcode.com/problems/top-k-frequent-elements/
+Given an integer list and k, return the k most frequent elements. The answer
+may be returned in any order.
+
 Solution:
 Time: O(n log n)
 Space: O(n)

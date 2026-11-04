@@ -1,6 +1,9 @@
 """Two Sum II - Input Array Is Sorted (Medium).
 
 Problem: https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+Given a sorted integer list and a target, return the 1-based indices of two
+values that add up to the target.
+
 Time: O(n)
 Space: O(1)
 """

@@ -1,6 +1,8 @@
 """Subsets (Medium).
 
 Problem: https://leetcode.com/problems/subsets/
+Given a list of unique integers, return all possible subsets.
+
 Time: O(n * 2**n)
 Space: O(n) auxiliary, O(n * 2**n) including output
 """

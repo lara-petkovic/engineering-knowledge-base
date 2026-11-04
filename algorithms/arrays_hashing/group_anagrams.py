@@ -2,6 +2,8 @@
 
 Problem: https://leetcode.com/problems/group-anagrams/
 
+Group the strings that are anagrams of each other and return the groups.
+
 This file contains:
 1) the user's original solution using sorted strings
 2) a better approach using a fixed-size letter-count array

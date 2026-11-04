@@ -1,6 +1,9 @@
 """Valid Palindrome (Easy).
 
 Problem: https://leetcode.com/problems/valid-palindrome/
+Return True if the string is a palindrome when non-alphanumeric characters are
+ignored and letter case is disregarded.
+
 Time: O(n)
 Space: O(1)
 """

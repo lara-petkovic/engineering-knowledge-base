@@ -1,6 +1,8 @@
 """Valid Anagram (Easy).
 
 Problem: https://leetcode.com/problems/valid-anagram/
+Given two strings, return True if one is an anagram of the other.
+
 Time: O(n+m)
 Space: O(k_s + k_t)
 """

@@ -1,6 +1,9 @@
 """Two Sum (Easy).
 
 Problem: https://leetcode.com/problems/two-sum/
+Given an integer list and a target, return the indices of two different values
+that add up to the target.
+
 Time: O(n)
 Space: O(n)
 """

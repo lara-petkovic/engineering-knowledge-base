@@ -1,6 +1,8 @@
 """Contains Duplicate (Easy).
 
 Problem: https://leetcode.com/problems/contains-duplicate/
+Given an integer list, return True if any value appears more than once.
+
 Time: O(n)
 Space: O(n)
 """
