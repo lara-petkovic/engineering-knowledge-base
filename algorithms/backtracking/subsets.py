@@ -18,11 +18,11 @@ class Solution:
                 res.append(sol[:])
                 return
             # Don't choose nums[i]
-            backtrack(i+1)
+            backtrack(i + 1)
 
-            #Choose nums[i]
+            # Choose nums[i]
             sol.append(nums[i])
-            backtrack(i+1)
+            backtrack(i + 1)
             sol.pop()
 
         backtrack(0)
