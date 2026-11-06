@@ -3,6 +3,11 @@
 Problem: https://leetcode.com/problems/binary-search/
 Given a sorted integer list and a target, return its index or -1 if it is absent.
 
+Solution:
+Time: O(log n)
+Space: O(1)
+
+MoreElegantSolution:
 Time: O(log n)
 Space: O(1)
 """
@@ -30,7 +35,7 @@ class Solution:
         return -1
 
 
-class ReadableSolution:
+class MoreElegantSolution:
     def search(self, nums: list[int], target: int) -> int:
         left = 0
         right = len(nums) - 1
@@ -64,7 +69,7 @@ if __name__ == "__main__":
         ([-10, -5, 0, 5, 10], 20, -1),
     ]
     failed = 0
-    solutions = [Solution(), ReadableSolution()]
+    solutions = [Solution(), MoreElegantSolution()]
     for solution in solutions:
         name = type(solution).__name__
         for nums, target, expected in cases:

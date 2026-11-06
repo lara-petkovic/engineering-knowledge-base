@@ -4,9 +4,13 @@ Problem: https://leetcode.com/problems/group-anagrams/
 
 Group the strings that are anagrams of each other and return the groups.
 
-This file contains:
-1) the user's original solution using sorted strings
-2) a better approach using a fixed-size letter-count array
+Solution:
+Time: O(n * k log k)
+Space: O(n * k)
+
+OptimalSolution:
+Time: O(n * k)
+Space: O(n * k)
 """
 
 from collections import defaultdict
@@ -14,7 +18,6 @@ from collections import defaultdict
 
 class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
-        """Original approach: sort each string and group by its sorted key."""
         hm = {}
 
         for s in strs:
@@ -25,13 +28,8 @@ class Solution:
         return list(hm.values())
 
 
-class SolutionBetter:
+class OptimalSolution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
-        """Better approach: count letters in a fixed 26-element array.
-
-        Each word gets a key like (2, 1, 0, ..., 0), which represents the number
-        of each letter in the word. This avoids sorting every string.
-        """
         groups = defaultdict(list)
 
         for s in strs:
@@ -56,7 +54,7 @@ if __name__ == "__main__":
 
     for strs, expected in cases:
         result1 = Solution().groupAnagrams(strs)
-        result2 = SolutionBetter().groupAnagrams(strs)
+        result2 = OptimalSolution().groupAnagrams(strs)
 
         assert sorted(map(sorted, result1)) == sorted(map(sorted, expected)), (
             f"Failed for original solution: {strs}: {result1}"
@@ -66,5 +64,5 @@ if __name__ == "__main__":
         )
 
     print(f"All {len(cases)} checks passed!")
-    print("Original solution: O(n * k log k)")
-    print("Better solution: O(n * k) with a 26-letter count key")
+    print("Solution: O(n * k log k)")
+    print("OptimalSolution: O(n * k) with a 26-letter count key")

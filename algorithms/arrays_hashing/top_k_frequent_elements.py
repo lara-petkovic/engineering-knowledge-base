@@ -8,7 +8,7 @@ Solution:
 Time: O(n log n)
 Space: O(n)
 
-BetterSolution:
+OptimalSolution:
 Time: O(n)
 Space: O(n)
 """
@@ -26,7 +26,7 @@ class Solution:
         return list(sorted_hm.keys())[:k]
 
 
-class BetterSolution:
+class OptimalSolution:
     def topKFrequent(self, nums: list[int], k: int) -> list[int]:
         frequency_by_number = {}
 
@@ -69,16 +69,20 @@ if __name__ == "__main__":
         ([10, 10, 20, 20, 30], 2, [10, 20]),
     ]
     failed = 0
-    for nums, k, expected in cases:
-        try:
-            result = Solution().topKFrequent(nums, k)
-            assert isinstance(result, list), f"Expected a list, got {type(result).__name__}"
-            assert len(result) == k, f"Expected {k} elements, got {result}"
-            assert sorted(result) == sorted(expected), f"Expected {expected}, got {result}"
-        except Exception as error:
-            failed += 1
-            print(f"FAIL: nums={nums}, k={k} => {error}")
-        else:
-            print(f"PASS: nums={nums}, k={k} => {result}")
-    print(f"Passed: {len(cases) - failed}, failed: {failed}")
+    solutions = [Solution(), OptimalSolution()]
+    for solution in solutions:
+        name = type(solution).__name__
+        for nums, k, expected in cases:
+            try:
+                result = solution.topKFrequent(nums, k)
+                assert isinstance(result, list), f"Expected a list, got {type(result).__name__}"
+                assert len(result) == k, f"Expected {k} elements, got {result}"
+                assert sorted(result) == sorted(expected), f"Expected {expected}, got {result}"
+            except Exception as error:
+                failed += 1
+                print(f"FAIL: {name}: nums={nums}, k={k} => {error}")
+            else:
+                print(f"PASS: {name}: nums={nums}, k={k} => {result}")
+    total = len(cases) * len(solutions)
+    print(f"Passed: {total - failed}, failed: {failed}")
     raise SystemExit(1 if failed else 0)
