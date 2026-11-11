@@ -14,22 +14,22 @@ class Solution:
         if s == "":
             return 0
         left = 0
-        r = 0
-        st = set()
+        right = 0
+        window_chars = set()
         res = 0
 
         for i in range(len(s)):
-            if s[i] not in st:
-                st.add(s[i])
-                r += 1
+            if s[i] not in window_chars:
+                window_chars.add(s[i])
+                right += 1
             else:
-                while s[i] in st:
-                    st.remove(s[left])
+                while s[i] in window_chars:
+                    window_chars.remove(s[left])
                     left += 1
 
-                st.add(s[i])
-                r += 1
-            res = max(res, r - left)
+                window_chars.add(s[i])
+                right += 1
+            res = max(res, right - left)
         return res
 
 
