@@ -12,6 +12,8 @@ Time: O(log n)
 Space: O(1)
 """
 
+from algorithms.test_helpers import run_tests
+
 
 class Solution:
     def search(self, nums: list[int], target: int) -> int:
@@ -55,34 +57,17 @@ class MoreElegantSolution:
 
 if __name__ == "__main__":
     cases = [
-        ([5], 5, 0),
-        ([1, 3], 1, 0),
-        ([-1, 0, 3, 5, 9, 12], 2, -1),
-        ([-1, 0, 3, 5, 9, 12], 9, 4),
-        ([5], 3, -1),
-        ([1, 3], 3, 1),
-        ([1, 3], 2, -1),
-        ([-10, -5, 0, 5, 10], 0, 2),
-        ([-10, -5, 0, 5, 10], -10, 0),
-        ([-10, -5, 0, 5, 10], 10, 4),
-        ([-10, -5, 0, 5, 10], -20, -1),
-        ([-10, -5, 0, 5, 10], 20, -1),
+        (([5], 5), 0),
+        (([1, 3], 1), 0),
+        (([-1, 0, 3, 5, 9, 12], 2), -1),
+        (([-1, 0, 3, 5, 9, 12], 9), 4),
+        (([5], 3), -1),
+        (([1, 3], 3), 1),
+        (([1, 3], 2), -1),
+        (([-10, -5, 0, 5, 10], 0), 2),
+        (([-10, -5, 0, 5, 10], -10), 0),
+        (([-10, -5, 0, 5, 10], 10), 4),
+        (([-10, -5, 0, 5, 10], -20), -1),
+        (([-10, -5, 0, 5, 10], 20), -1),
     ]
-    failed = 0
-    solutions = [Solution(), MoreElegantSolution()]
-    for solution in solutions:
-        name = type(solution).__name__
-        for nums, target, expected in cases:
-            try:
-                result = solution.search(nums, target)
-                assert result == expected, f"Expected {expected}, got {result}"
-            except Exception as error:
-                failed += 1
-                print(
-                    f"FAIL: {name}: nums={nums}, target={target} => {type(error).__name__}: {error}"
-                )
-            else:
-                print(f"PASS: {name}: nums={nums}, target={target} => {result}")
-    total = len(cases) * len(solutions)
-    print(f"Passed: {total - failed}, failed: {failed}")
-    raise SystemExit(1 if failed else 0)
+    raise SystemExit(run_tests([Solution().search, MoreElegantSolution().search], cases))

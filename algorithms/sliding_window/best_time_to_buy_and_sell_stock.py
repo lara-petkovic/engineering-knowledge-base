@@ -11,6 +11,8 @@ Example:
     expected = 5
 """
 
+from algorithms.test_helpers import run_tests
+
 
 class Solution:
     def maxProfit(self, prices: list[int]) -> int:
@@ -26,25 +28,13 @@ class Solution:
 
 if __name__ == "__main__":
     cases = [
-        ([7, 1, 5, 3, 6, 4], 5),
-        ([7, 6, 4, 3, 1], 0),
-        ([1, 2], 1),
-        ([2, 4, 1], 2),
-        ([3, 2, 6, 5, 0, 3], 4),
-        ([1], 0),
-        ([1, 2, 3, 4, 5], 4),
-        ([2, 2, 2], 0),
+        (([7, 1, 5, 3, 6, 4],), 5),
+        (([7, 6, 4, 3, 1],), 0),
+        (([1, 2],), 1),
+        (([2, 4, 1],), 2),
+        (([3, 2, 6, 5, 0, 3],), 4),
+        (([1],), 0),
+        (([1, 2, 3, 4, 5],), 4),
+        (([2, 2, 2],), 0),
     ]
-    failed = 0
-    for prices, expected in cases:
-        try:
-            result = Solution().maxProfit(prices)
-            assert isinstance(result, int), f"Expected an int, got {type(result).__name__}"
-            assert result == expected, f"Expected {expected}, got {result}"
-        except Exception as error:
-            failed += 1
-            print(f"FAIL: prices={prices} => {type(error).__name__}: {error}")
-        else:
-            print(f"PASS: prices={prices} => {result}")
-    print(f"Passed: {len(cases) - failed}, failed: {failed}")
-    raise SystemExit(1 if failed else 0)
+    raise SystemExit(run_tests(Solution().maxProfit, cases))

@@ -8,6 +8,8 @@ Time: O(n)
 Space: O(1)
 """
 
+from algorithms.test_helpers import run_tests
+
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
@@ -26,44 +28,28 @@ class Solution:
 
 if __name__ == "__main__":
     cases = [
-        ("A man, a plan, a canal: Panama", True),
-        ("race a car", False),
-        ("", True),
-        (" ", True),
-        ("   ", True),
-        ("!!!", True),
-        ("a", True),
-        ("aa", True),
-        ("ab", False),
-        ("aba", True),
-        ("abba", True),
-        ("abcba", True),
-        ("abc", False),
-        ("0P", False),
-        ("ab_a", True),
-        ("ab@a", True),
-        ("Aba", True),
-        ("12321", True),
-        ("12345", False),
-        ("a1b1a", True),
-        (".,a@A!,", True),
-        ("a.b,c!b a", True),
-        ("a!b", False),
+        (("A man, a plan, a canal: Panama",), True),
+        (("race a car",), False),
+        (("",), True),
+        ((" ",), True),
+        (("   ",), True),
+        (("!!!",), True),
+        (("a",), True),
+        (("aa",), True),
+        (("ab",), False),
+        (("aba",), True),
+        (("abba",), True),
+        (("abcba",), True),
+        (("abc",), False),
+        (("0P",), False),
+        (("ab_a",), True),
+        (("ab@a",), True),
+        (("Aba",), True),
+        (("12321",), True),
+        (("12345",), False),
+        (("a1b1a",), True),
+        ((".,a@A!,",), True),
+        (("a.b,c!b a",), True),
+        (("a!b",), False),
     ]
-
-    failed = 0
-
-    for s, expected in cases:
-        try:
-            result = Solution().isPalindrome(s)
-            assert isinstance(result, bool), f"Expected bool, got {type(result).__name__}"
-            assert result == expected, f"Expected {expected}, got {result}"
-
-        except Exception as error:
-            failed += 1
-            print(f"FAIL: s={s!r} => {error}")
-        else:
-            print(f"PASS: s={s!r} => {result}")
-
-    print(f"\nPassed: {len(cases) - failed}, failed: {failed}")
-    raise SystemExit(1 if failed else 0)
+    raise SystemExit(run_tests(Solution().isPalindrome, cases))

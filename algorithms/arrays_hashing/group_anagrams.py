@@ -15,6 +15,8 @@ Space: O(n * k)
 
 from collections import defaultdict
 
+from algorithms.test_helpers import normalize_groups, run_tests
+
 
 class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
@@ -43,26 +45,18 @@ class OptimalSolution:
 if __name__ == "__main__":
     cases = [
         (
-            ["eat", "tea", "tan", "ate", "nat", "bat"],
+            (["eat", "tea", "tan", "ate", "nat", "bat"],),
             [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]],
         ),
-        ([""], [[""]]),
-        (["a"], [["a"]]),
-        (["ab", "ba", "abc", "cba"], [["ab", "ba"], ["abc", "cba"]]),
-        (["listen", "silent", "enlist", "hello"], [["listen", "silent", "enlist"], ["hello"]]),
+        (([""],), [[""]]),
+        ((["a"],), [["a"]]),
+        ((["ab", "ba", "abc", "cba"],), [["ab", "ba"], ["abc", "cba"]]),
+        ((["listen", "silent", "enlist", "hello"],), [["listen", "silent", "enlist"], ["hello"]]),
     ]
-
-    for strs, expected in cases:
-        result1 = Solution().groupAnagrams(strs)
-        result2 = OptimalSolution().groupAnagrams(strs)
-
-        assert sorted(map(sorted, result1)) == sorted(map(sorted, expected)), (
-            f"Failed for original solution: {strs}: {result1}"
+    raise SystemExit(
+        run_tests(
+            [Solution().groupAnagrams, OptimalSolution().groupAnagrams],
+            cases,
+            normalize=normalize_groups,
         )
-        assert sorted(map(sorted, result2)) == sorted(map(sorted, expected)), (
-            f"Failed for optimized solution: {strs}: {result2}"
-        )
-
-    print(f"All {len(cases)} checks passed!")
-    print("Solution: O(n * k log k)")
-    print("OptimalSolution: O(n * k) with a 26-letter count key")
+    )

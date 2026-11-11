@@ -7,6 +7,8 @@ Time: O(n+m)
 Space: O(k_s + k_t)
 """
 
+from algorithms.test_helpers import run_tests
+
 
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
@@ -22,15 +24,13 @@ class Solution:
 
 if __name__ == "__main__":
     cases = [
-        ("anagram", "nagaram", True),
-        ("rat", "car", False),
-        ("", "", True),
-        ("a", "a", True),
-        ("a", "b", False),
-        ("ab", "ba", True),
-        ("abc", "cba", True),
-        ("abc", "abcd", False),
+        (("anagram", "nagaram"), True),
+        (("rat", "car"), False),
+        (("", ""), True),
+        (("a", "a"), True),
+        (("a", "b"), False),
+        (("ab", "ba"), True),
+        (("abc", "cba"), True),
+        (("abc", "abcd"), False),
     ]
-    for s, t, expected in cases:
-        assert Solution().isAnagram(s, t) is expected, f"Failed for {s}, {t}"
-    print(f"All {len(cases)} checks passed!")
+    raise SystemExit(run_tests(Solution().isAnagram, cases))

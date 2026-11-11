@@ -4,7 +4,12 @@ from pathlib import Path
 
 
 def main() -> int:
-    exercises = sorted(Path("algorithms").rglob("*.py"))
+    root = Path(__file__).resolve().parents[1]
+    exercises = sorted(
+        path.relative_to(root)
+        for path in (root / "algorithms").glob("*/*.py")
+        if path.name not in {"helpers.py", "__init__.py"}
+    )
     if not exercises:
         print("No exercises found", file=sys.stderr)
         return 1
@@ -12,7 +17,8 @@ def main() -> int:
     failed = []
     for exercise in exercises:
         print(f"Running {exercise}", flush=True)
-        result = subprocess.run([sys.executable, str(exercise)], check=False)
+        module = ".".join(exercise.with_suffix("").parts)
+        result = subprocess.run([sys.executable, "-m", module], cwd=root, check=False)
         if result.returncode:
             failed.append(str(exercise))
 

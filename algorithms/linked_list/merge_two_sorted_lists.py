@@ -9,11 +9,8 @@ Space: O(1)
 
 from __future__ import annotations
 
-
-class ListNode:
-    def __init__(self, val: int = 0, next: ListNode | None = None) -> None:
-        self.val = val
-        self.next = next
+from algorithms.linked_list.helpers import ListNode, linked_list_to_list, prepare_linked_lists
+from algorithms.test_helpers import run_tests
 
 
 class Solution:
@@ -34,55 +31,29 @@ class Solution:
         return res.next
 
 
-def build_linked_list(values: list[int]) -> ListNode | None:
-    dummy = ListNode()
-    current = dummy
-    for value in values:
-        current.next = ListNode(value)
-        current = current.next
-    return dummy.next
-
-
-def linked_list_to_list(head: ListNode | None) -> list[int]:
-    values = []
-    seen = set()
-    while head is not None:
-        if id(head) in seen:
-            raise AssertionError("Result contains a cycle")
-        seen.add(id(head))
-        values.append(head.val)
-        head = head.next
-    return values
-
-
 if __name__ == "__main__":
     cases = [
-        ([], [], []),
-        ([], [0], [0]),
-        ([0], [], [0]),
-        ([], [1, 2, 3], [1, 2, 3]),
-        ([1, 2, 3], [], [1, 2, 3]),
-        ([1], [2], [1, 2]),
-        ([2], [1], [1, 2]),
-        ([1], [1], [1, 1]),
-        ([1, 2, 4], [1, 3, 4], [1, 1, 2, 3, 4, 4]),
-        ([1, 2], [3, 4, 5], [1, 2, 3, 4, 5]),
-        ([3, 4, 5], [1, 2], [1, 2, 3, 4, 5]),
-        ([1], [2, 3, 4, 5], [1, 2, 3, 4, 5]),
-        ([0, 0], [0, 0, 0], [0, 0, 0, 0, 0]),
-        ([-5, -3, -1], [-4, -2, 0], [-5, -4, -3, -2, -1, 0]),
-        ([-10, 0, 10], [-5, 0, 5], [-10, -5, 0, 0, 5, 10]),
+        (([], []), []),
+        (([], [0]), [0]),
+        (([0], []), [0]),
+        (([], [1, 2, 3]), [1, 2, 3]),
+        (([1, 2, 3], []), [1, 2, 3]),
+        (([1], [2]), [1, 2]),
+        (([2], [1]), [1, 2]),
+        (([1], [1]), [1, 1]),
+        (([1, 2, 4], [1, 3, 4]), [1, 1, 2, 3, 4, 4]),
+        (([1, 2], [3, 4, 5]), [1, 2, 3, 4, 5]),
+        (([3, 4, 5], [1, 2]), [1, 2, 3, 4, 5]),
+        (([1], [2, 3, 4, 5]), [1, 2, 3, 4, 5]),
+        (([0, 0], [0, 0, 0]), [0, 0, 0, 0, 0]),
+        (([-5, -3, -1], [-4, -2, 0]), [-5, -4, -3, -2, -1, 0]),
+        (([-10, 0, 10], [-5, 0, 5]), [-10, -5, 0, 0, 5, 10]),
     ]
-    failed = 0
-    for first, second, expected in cases:
-        try:
-            result = Solution().mergeTwoLists(build_linked_list(first), build_linked_list(second))
-            actual = linked_list_to_list(result)
-            assert actual == expected, f"Expected {expected}, got {actual}"
-        except Exception as error:
-            failed += 1
-            print(f"FAIL: {first} + {second} => {type(error).__name__}: {error}")
-        else:
-            print(f"PASS: {first} + {second} => {actual}")
-    print(f"Passed: {len(cases) - failed}, failed: {failed}")
-    raise SystemExit(1 if failed else 0)
+    raise SystemExit(
+        run_tests(
+            Solution().mergeTwoLists,
+            cases,
+            prepare=prepare_linked_lists,
+            convert=linked_list_to_list,
+        )
+    )

@@ -16,11 +16,8 @@ Space: O(max(m, n))
 
 from __future__ import annotations
 
-
-class ListNode:
-    def __init__(self, val: int = 0, next: ListNode | None = None) -> None:
-        self.val = val
-        self.next = next
+from algorithms.linked_list.helpers import ListNode, linked_list_to_list, prepare_linked_lists
+from algorithms.test_helpers import run_tests
 
 
 class Solution:
@@ -76,53 +73,19 @@ class OptimalSolution:
         return dummy.next
 
 
-def build_linked_list(values: list[int]) -> ListNode | None:
-    head = ListNode()
-    current = head
-
-    for value in values:
-        current.next = ListNode(value)
-        current = current.next
-
-    return head.next
-
-
-def linked_list_to_list(head: ListNode | None) -> list[int]:
-    values = []
-    current = head
-
-    while current:
-        values.append(current.val)
-        current = current.next
-
-    return values
-
-
 if __name__ == "__main__":
     cases = [
-        ([2, 4, 3, 1], [5, 6, 4], [7, 0, 8, 1]),
-        ([2, 4, 3], [5, 6, 4], [7, 0, 8]),
-        ([0], [0], [0]),
-        ([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9], [8, 9, 9, 9, 0, 0, 0, 1]),
-        ([1], [9, 9], [0, 0, 1]),
+        (([2, 4, 3, 1], [5, 6, 4]), [7, 0, 8, 1]),
+        (([2, 4, 3], [5, 6, 4]), [7, 0, 8]),
+        (([0], [0]), [0]),
+        (([9, 9, 9, 9, 9, 9, 9], [9, 9, 9, 9]), [8, 9, 9, 9, 0, 0, 0, 1]),
+        (([1], [9, 9]), [0, 0, 1]),
     ]
-    failed = 0
-    for first, second, expected in cases:
-        for solution_type in (Solution, OptimalSolution):
-            try:
-                result = solution_type().addTwoNumbers(
-                    build_linked_list(first),
-                    build_linked_list(second),
-                )
-                actual = linked_list_to_list(result)
-                assert actual == expected, f"Expected {expected}, got {actual}"
-            except Exception as error:
-                failed += 1
-                print(
-                    f"FAIL: {solution_type.__name__}: {first} + {second} "
-                    f"=> {type(error).__name__}: {error}"
-                )
-            else:
-                print(f"PASS: {solution_type.__name__}: {first} + {second} => {actual}")
-    print(f"Passed: {len(cases) - failed}, failed: {failed}")
-    raise SystemExit(1 if failed else 0)
+    raise SystemExit(
+        run_tests(
+            [Solution().addTwoNumbers, OptimalSolution().addTwoNumbers],
+            cases,
+            prepare=prepare_linked_lists,
+            convert=linked_list_to_list,
+        )
+    )

@@ -7,6 +7,8 @@ Time: O(N), where N is len(s)
 Space: O(N)
 """
 
+from algorithms.test_helpers import run_tests
+
 
 class Solution:
     def convert(self, s: str, numRows: int) -> str:
@@ -32,22 +34,10 @@ class Solution:
 
 if __name__ == "__main__":
     cases = [
-        ("PAYPALISHIRING", 3, "PAHNAPLSIIGYIR"),
-        ("PAYPALISHIRING", 4, "PINALSIGYAHRPI"),
-        ("A", 1, "A"),
-        ("AB", 3, "AB"),
-        ("", 3, ""),
+        (("PAYPALISHIRING", 3), "PAHNAPLSIIGYIR"),
+        (("PAYPALISHIRING", 4), "PINALSIGYAHRPI"),
+        (("A", 1), "A"),
+        (("AB", 3), "AB"),
+        (("", 3), ""),
     ]
-    failed = 0
-    for s, num_rows, expected in cases:
-        try:
-            result = Solution().convert(s, num_rows)
-            assert isinstance(result, str), f"Expected a string, got {type(result).__name__}"
-            assert result == expected, f"Expected {expected!r}, got {result!r}"
-        except Exception as error:
-            failed += 1
-            print(f"FAIL: s={s!r}, numRows={num_rows} => {type(error).__name__}: {error}")
-        else:
-            print(f"PASS: s={s!r}, numRows={num_rows} => {result!r}")
-    print(f"Passed: {len(cases) - failed}, failed: {failed}")
-    raise SystemExit(1 if failed else 0)
+    raise SystemExit(run_tests(Solution().convert, cases))
