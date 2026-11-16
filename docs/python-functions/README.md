@@ -2,6 +2,7 @@
 
 - [`ord()`](ord.md)
 - [`tuple`](tuple.md)
+- [`deque` — double-ended queue](deque.md)
 - [`str.join()`](join.md)
 - [Building a string in a loop](string-building.md)
 - [`str.isalnum()`](isalnum.md)
